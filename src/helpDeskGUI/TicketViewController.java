@@ -216,18 +216,14 @@ public class TicketViewController implements Initializable {
    
 
     Dialog<Ticket> dialog = new Dialog();
-    dialog.setTitle("Update a ticket.");
-    dialog.setHeaderText("Please enter the new contents of the ticket or press cancel. Make sure to fill out all fields.");
+    dialog.setTitle("Update Ticket");
+    dialog.setHeaderText("Edit the contents of this ticket: ");
     dialog.setResizable(true);
     
     ButtonType confirmButtonType = new ButtonType("Confirm", ButtonData.OK_DONE);
     dialog.getDialogPane().getButtonTypes().addAll(confirmButtonType, ButtonType.CANCEL);
  
-    
-    
-    
-    
-    
+   
     Label label1 = new Label("Status: ");
     Label label2 = new Label("First Name: ");
     Label label3 = new Label("Last Name: ");
@@ -236,12 +232,13 @@ public class TicketViewController implements Initializable {
     Label label7 = new Label("Description: ");
     Label label8 = new Label("Full Name: ");   
    
-    TextField text1 = new TextField();
-    TextField text2 = new TextField();
-    TextField text3 = new TextField();
-    TextField text4 = new TextField();
-    TextField text6 = new TextField();
-    TextField text7 = new TextField();
+    TextField text1 = new TextField(String.valueOf(previousItem.getStatus()));
+    TextField text2 = new TextField(previousItem.getFirstName());
+    TextField text3 = new TextField(previousItem.getLastName());
+    //assuming that the previous ticket has a correct localdate
+    TextField text4 = new TextField(previousItem.getDateRequested().toString().substring(23,33));
+    TextField text6 = new TextField(previousItem.getAssignedTo());
+    TextField text7 = new TextField(previousItem.getDescription());
  
     GridPane grid = new GridPane();
     grid.add(label1, 1, 1);

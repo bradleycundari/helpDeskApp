@@ -113,6 +113,12 @@ public class Ticket {
         return assignedTo;
     } 
     
+    public ObjectProperty<LocalDate> getDateRequested()
+    {
+        return dateRequested;
+    }
+    
+    
     
  
     public String getLastName(){
@@ -144,10 +150,12 @@ public class Ticket {
         return dateRequested;
     }
 
+    
+  
     /*
     this block is for the ticket status
      */
-     public int getstatus(){
+     public int getStatus(){
         
       return this.status.get();  
     }

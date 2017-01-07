@@ -59,7 +59,7 @@
                   <TableColumn fx:id="statusColumn" prefWidth="75.0" text="Status" />
                   <TableColumn fx:id="firstNameColumn" prefWidth="75.0" text="First Name" />
                 <TableColumn fx:id="lastNameColumn" prefWidth="75.0" text="Last Name" />
-                  <TableColumn fx:id="dateRequestedColumn" prefWidth="75.0" text="Date Requested" />
+                  <TableColumn fx:id="dateRequestedColumn" prefWidth="75.0" text="Date Created" />
                 <TableColumn fx:id="assignedToColumn" minWidth="0.0" prefWidth="0.0" text="Assigned To" />
                   <TableColumn fx:id="descriptionColumn" prefWidth="75.0" text="Description" />
               </columns>
