@@ -224,41 +224,41 @@ public class TicketViewController implements Initializable {
     dialog.getDialogPane().getButtonTypes().addAll(confirmButtonType, ButtonType.CANCEL);
  
    
-    Label label1 = new Label("Status: ");
-    Label label2 = new Label("First Name: ");
-    Label label3 = new Label("Last Name: ");
-    Label label4 = new Label("Date Requested (YYYY/MM/DD): ");   
-    Label label6 = new Label("Employee Assigned: ");
-    Label label7 = new Label("Description: ");
-    Label label8 = new Label("Full Name: ");   
+    Label statusLabel = new Label("Status: ");
+    Label firstNameLabel = new Label("First Name: ");
+    Label lastNameLabel = new Label("Last Name: ");
+    Label dateRequestedLabel = new Label("Date Requested (YYYY/MM/DD): ");   
+    Label employeeAssignedLabel = new Label("Employee Assigned: ");
+    Label descriptionLabel = new Label("Description: ");
    
-    TextField text1 = new TextField(String.valueOf(previousItem.getStatus()));
-    TextField text2 = new TextField(previousItem.getFirstName());
-    TextField text3 = new TextField(previousItem.getLastName());
+   
+    TextField statusTextField = new TextField(String.valueOf(previousItem.getStatus()));
+    TextField firstNameTextField = new TextField(previousItem.getFirstName());
+    TextField lastNameTextField = new TextField(previousItem.getLastName());
     //assuming that the previous ticket has a correct localdate
-    TextField text4 = new TextField(previousItem.getDateRequested().toString().substring(23,33));
-    TextField text6 = new TextField(previousItem.getAssignedTo());
-    TextField text7 = new TextField(previousItem.getDescription());
+    TextField dateRequestedTextField = new TextField(previousItem.getDateRequested().toString().substring(23,33));
+    TextField employeeAssignedTextField = new TextField(previousItem.getAssignedTo());
+    TextField descriptionTextField = new TextField(previousItem.getDescription());
  
     GridPane grid = new GridPane();
-    grid.add(label1, 1, 1);
-    grid.add(text1, 2, 1);
+    grid.add(statusLabel, 1, 1);
+    grid.add(statusTextField, 2, 1);
     
-    grid.add(label2, 1, 2);
-    grid.add(text2, 2, 2);
+    grid.add(firstNameLabel, 1, 2);
+    grid.add(firstNameTextField, 2, 2);
     
-    grid.add(label3, 1, 3);
-    grid.add(text3, 2, 3);
+    grid.add(lastNameLabel, 1, 3);
+    grid.add(lastNameTextField, 2, 3);
     
-    grid.add(label4, 1, 4);
-    grid.add(text4, 2, 4);
+    grid.add(dateRequestedLabel, 1, 4);
+    grid.add(dateRequestedTextField, 2, 4);
     
     
-    grid.add(label6, 1, 6);
-    grid.add(text6, 2, 6);
+    grid.add(employeeAssignedLabel, 1, 6);
+    grid.add(employeeAssignedTextField, 2, 6);
     
-    grid.add(label7, 1, 7);
-    grid.add(text7, 2, 7);
+    grid.add(descriptionLabel, 1, 7);
+    grid.add(descriptionTextField, 2, 7);
         
     dialog.getDialogPane().setContent(grid);
     
@@ -272,19 +272,19 @@ public class TicketViewController implements Initializable {
     if (result.isPresent()) {
         
     //string mutations to match constructor
-    int status = Integer.parseInt(text1.getText());
-    String placeHolder = text4.getText().substring(0,4);
+    int status = Integer.parseInt(statusTextField.getText());
+    String placeHolder = dateRequestedTextField.getText().substring(0,4);
     int newYear = Integer.parseInt(placeHolder);
-    placeHolder = text4.getText().substring(5,7);
+    placeHolder = dateRequestedTextField.getText().substring(5,7);
     int newMonth = Integer.parseInt(placeHolder);
-    placeHolder = text4.getText().substring(8,10);
+    placeHolder = dateRequestedTextField.getText().substring(8,10);
     int newDay = Integer.parseInt(placeHolder);
     LocalDate newDate = LocalDate.of(newYear, newMonth, newDay);
     
     
-    fullName = fullName + text2.getText() + " " + text3.getText();
-    Ticket newTicket = new Ticket(status, text2.getText(), text3.getText(),newDate, text6.getText(),
-    text7.getText(), fullName);
+    fullName = fullName + firstNameTextField.getText() + " " + lastNameTextField.getText();
+    Ticket newTicket = new Ticket(status, firstNameTextField.getText(), lastNameTextField.getText(),newDate, employeeAssignedTextField.getText(),
+    descriptionTextField.getText(), fullName);
     
     originalList.remove(previousItem);
     originalList.add(newTicket);
