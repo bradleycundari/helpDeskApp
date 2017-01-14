@@ -6,13 +6,13 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="727.0" prefWidth="1211.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="helpDeskGUI.TicketViewController">
+<AnchorPane id="AnchorPane" minHeight="727.0" minWidth="1211.0" prefHeight="727.0" prefWidth="1211.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="helpDeskGUI.TicketViewController">
    <children>
       <BorderPane layoutX="-3.0" layoutY="110.0" prefHeight="727.0" prefWidth="1504.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-3.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
             <VBox alignment="CENTER" prefHeight="68.0" prefWidth="1504.0" BorderPane.alignment="CENTER">
                <children>
-                  <MenuBar prefHeight="18.0" prefWidth="500.0">
+                  <MenuBar prefHeight="25.0" prefWidth="1268.0">
                     <menus>
                       <Menu mnemonicParsing="false" text="File">
                         <items>
@@ -31,8 +31,8 @@
                       </Menu>
                     </menus>
                   </MenuBar>
-                  <StackPane />
-                  <ToolBar nodeOrientation="RIGHT_TO_LEFT" prefHeight="35.0" prefWidth="0.0">
+                  <StackPane prefHeight="0.0" prefWidth="1148.0" />
+                  <ToolBar nodeOrientation="RIGHT_TO_LEFT" prefHeight="40.0" prefWidth="200.0">
                     <items>
                       <Button fx:id="clearButton" alignment="BOTTOM_RIGHT" contentDisplay="TOP" mnemonicParsing="false" onAction="#handleClearButtonAction" onMouseEntered="#clearButtonMouseEntered" onMouseExited="#clearButtonMouseExited" style="-fx-background-color: #333366;" text="Clear" textFill="WHITE">
                            <cursor>
@@ -40,11 +40,7 @@
                            </cursor>
                         </Button>
                         <TextField fx:id="filterField" nodeOrientation="LEFT_TO_RIGHT" promptText="Type Criteria Here" />
-                        <Label text="Filter Requests:" />
-                    </items>
-                  </ToolBar>
-                  <ToolBar nodeOrientation="RIGHT_TO_LEFT" prefHeight="40.0" prefWidth="200.0">
-                    <items>
+                        <Label prefHeight="17.0" prefWidth="221.0" text="Filter Requests by Name:" />
                         <Button mnemonicParsing="false" onMouseClicked="#deleteClicked" prefHeight="25.0" prefWidth="255.0" text="Delete a ticket" />
                         <Button mnemonicParsing="false" onMouseClicked="#updateClicked" prefHeight="25.0" prefWidth="255.0" text="Edit a ticket" />
                         <Button mnemonicParsing="false" onMouseClicked="#addClicked" prefHeight="25.0" prefWidth="255.0" text="Add a ticket" />
@@ -54,9 +50,9 @@
             </VBox>
          </top>
          <right>
-            <TableView fx:id="ticketTable" prefHeight="541.0" prefWidth="782.0" BorderPane.alignment="CENTER">
+            <TableView fx:id="ticketTable" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="659.0" prefWidth="1211.0" BorderPane.alignment="CENTER">
               <columns>
-                  <TableColumn fx:id="statusColumn" prefWidth="75.0" text="Status" />
+                  <TableColumn fx:id="statusColumn" prefWidth="75.0" text="Ticket #" />
                   <TableColumn fx:id="firstNameColumn" prefWidth="75.0" text="First Name" />
                 <TableColumn fx:id="lastNameColumn" prefWidth="75.0" text="Last Name" />
                   <TableColumn fx:id="dateRequestedColumn" prefWidth="75.0" text="Date Created" />
@@ -68,13 +64,6 @@
                </columnResizePolicy>
             </TableView>
          </right>
-         <left>
-            <TableView fx:id="employeeTable" prefHeight="632.0" prefWidth="320.0" BorderPane.alignment="CENTER">
-               <columns>
-                  <TableColumn fx:id="employeeColumn" prefWidth="319.0" text="Active Employees" />
-               </columns>
-            </TableView>
-         </left>
       </BorderPane>
    </children>
 </AnchorPane>

@@ -93,7 +93,6 @@ public class TicketViewController implements Initializable {
 
        // Add observable list data to the table
        ticketTable.setItems(mainApp.getTicketData());
-       employeeTable.setItems(mainApp.getEmployeeData());
        this.setFiltering(); 
     } // End Method
 
@@ -165,7 +164,6 @@ public class TicketViewController implements Initializable {
     dateRequestedColumn.setCellValueFactory(cellData -> cellData.getValue().dateRequestedProperty());
     assignedToColumn.setCellValueFactory(cellData -> cellData.getValue().assignedToProperty());
     descriptionColumn.setCellValueFactory(cellData -> cellData.getValue().descriptionProperty());
-    employeeColumn.setCellValueFactory(cellData -> cellData.getValue().assignedToProperty());
     } //End method   
     
     
@@ -218,31 +216,37 @@ public class TicketViewController implements Initializable {
     Dialog<Ticket> dialog = new Dialog();
     dialog.setTitle("Update Ticket");
     dialog.setHeaderText("Edit the contents of this ticket: ");
-    dialog.setResizable(true);
+    dialog.setResizable(false);
     
     ButtonType confirmButtonType = new ButtonType("Confirm", ButtonData.OK_DONE);
     dialog.getDialogPane().getButtonTypes().addAll(confirmButtonType, ButtonType.CANCEL);
  
    
-    Label statusLabel = new Label("Status: ");
+    Label ticketNumberLabel = new Label("Ticket Number: ");
     Label firstNameLabel = new Label("First Name: ");
     Label lastNameLabel = new Label("Last Name: ");
     Label dateRequestedLabel = new Label("Date Requested (YYYY/MM/DD): ");   
     Label employeeAssignedLabel = new Label("Employee Assigned: ");
     Label descriptionLabel = new Label("Description: ");
+    
    
-   
-    TextField statusTextField = new TextField(String.valueOf(previousItem.getStatus()));
+    TextField ticketNumberField = new TextField(String.valueOf(previousItem.getStatus()));
     TextField firstNameTextField = new TextField(previousItem.getFirstName());
     TextField lastNameTextField = new TextField(previousItem.getLastName());
     //assuming that the previous ticket has a correct localdate
     TextField dateRequestedTextField = new TextField(previousItem.getDateRequested().toString().substring(23,33));
     TextField employeeAssignedTextField = new TextField(previousItem.getAssignedTo());
     TextField descriptionTextField = new TextField(previousItem.getDescription());
+    
+    //making the description field bigger so its easy to use
+    descriptionTextField.setPrefWidth(160);
+    descriptionTextField.setPrefHeight(80);
+    
+    
  
     GridPane grid = new GridPane();
-    grid.add(statusLabel, 1, 1);
-    grid.add(statusTextField, 2, 1);
+    grid.add(ticketNumberLabel, 1, 1);
+    grid.add(ticketNumberField, 2, 1);
     
     grid.add(firstNameLabel, 1, 2);
     grid.add(firstNameTextField, 2, 2);
@@ -272,7 +276,7 @@ public class TicketViewController implements Initializable {
     if (result.isPresent()) {
         
     //string mutations to match constructor
-    int status = Integer.parseInt(statusTextField.getText());
+    int status = Integer.parseInt(ticketNumberField.getText());
     String placeHolder = dateRequestedTextField.getText().substring(0,4);
     int newYear = Integer.parseInt(placeHolder);
     placeHolder = dateRequestedTextField.getText().substring(5,7);
@@ -301,22 +305,21 @@ public class TicketViewController implements Initializable {
 
     Dialog<Ticket> dialog = new Dialog();
     dialog.setTitle("Add a new ticket");
-    dialog.setHeaderText("Please enter the contents of the new ticket or press cancel.");
-    dialog.setResizable(true);
+    dialog.setHeaderText("Please enter the contents of the new ticket:");
+    dialog.setResizable(false);
     
     ButtonType confirmButtonType = new ButtonType("Confirm", ButtonData.OK_DONE);
     dialog.getDialogPane().getButtonTypes().addAll(confirmButtonType, ButtonType.CANCEL);
  
     
-    Label statusLabel = new Label("Status: ");
+    Label ticketNumberLabel = new Label("Ticket Number: ");
     Label firstNameLabel = new Label("First Name: ");
     Label lastNameLabel = new Label("Last Name: ");
     Label dateRequestedLabel = new Label("Date Requested (YYYY/MM/DD): ");   
     Label employeeAssignedLabel = new Label("Employee Assigned: ");
     Label descriptionLabel = new Label("Description: ");
-    Label fullNameLabel = new Label("Full Name: ");   
-   
-    TextField statusField = new TextField();
+
+    TextField ticketNumberField = new TextField();
     TextField firstNameField = new TextField();
     TextField lastNameField = new TextField();
     TextField dateRequestedField = new TextField();
@@ -324,10 +327,10 @@ public class TicketViewController implements Initializable {
     TextField descriptionField = new TextField();
  
     GridPane grid = new GridPane();
-    grid.add(statusLabel, 1, 1);
-    grid.add(statusField, 2, 1);
+    grid.add(ticketNumberLabel, 1, 1);
+    grid.add(ticketNumberField, 2, 1);
     
-    grid.add(firstNameLabel, 1, 2);
+    grid.add(firstNameLabel, 1, 2); 
     grid.add(firstNameField, 2, 2);
     
     grid.add(lastNameLabel, 1, 3);
@@ -352,12 +355,18 @@ public class TicketViewController implements Initializable {
     
     if (result.isPresent()) {
         
+
+    System.out.println(result.isPresent());
+    System.out.println(result.get());
     //string mutations to match constructor
-    int status = Integer.parseInt(statusField.getText());
+    int status = Integer.parseInt(ticketNumberField.getText());
     String placeHolder = dateRequestedField.getText().substring(0,4);
+
+    //create local date
+   
     int newYear = Integer.parseInt(placeHolder);
     placeHolder = dateRequestedField.getText().substring(5,7);
-    int newMonth = Integer.parseInt(placeHolder);
+    int newMonth =  Integer.parseInt(placeHolder);
     placeHolder = dateRequestedField.getText().substring(8,10);
     int newDay = Integer.parseInt(placeHolder);
     LocalDate newDate = LocalDate.of(newYear, newMonth, newDay);
@@ -370,7 +379,7 @@ public class TicketViewController implements Initializable {
 
     originalList.add(newTicket);
     }
-
+    
     
    
         

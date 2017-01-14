@@ -28,8 +28,6 @@ public class Main extends Application {
     
 private ObservableList<Ticket> ticketData = 
 		FXCollections.observableArrayList();
-private ObservableList<Ticket> employeeData = 
-		FXCollections.observableArrayList();
 
  public Main()
        {
@@ -40,9 +38,6 @@ private ObservableList<Ticket> employeeData =
         ticketData.add(new Ticket(2, "Bill", "Gates",
                             LocalDate.of(1804, 7, 3), "Ben L.", "Kill All Connections on Network at 12PM", "Bill Gates"));
    
-        
-        // taking the data and moving it over
-        employeeData = ticketData;
        }
     
    
@@ -60,6 +55,8 @@ private ObservableList<Ticket> employeeData =
         
         stage.setScene(scene);
         stage.setTitle("Help Desk Ticket Viewing Application");
+        stage.setMinHeight(727);
+        stage.setMinWidth(1211);
         stage.show();
     }
 
@@ -67,12 +64,8 @@ private ObservableList<Ticket> employeeData =
      	* Returns the data as an observable list of Employees. 
      	* @return
     */
-    public ObservableList<Ticket> getTicketData() {
+   public ObservableList<Ticket> getTicketData() {
         	return ticketData;
-    }
-
-    public ObservableList<Ticket> getEmployeeData() {
-        	return employeeData;
     }
 
     
