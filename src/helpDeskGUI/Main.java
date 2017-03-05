@@ -12,12 +12,15 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import helpDeskGUI.Ticket;
+import java.awt.event.MouseEvent;
 import java.time.LocalDate;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-
-
-
+import javafx.event.EventHandler;
+import javafx.scene.layout.BorderPane;
+import javafx.stage.StageStyle;
+import javafx.scene.Node;
+import javafx.event.*;
 
 
 /**
@@ -28,6 +31,10 @@ public class Main extends Application {
     
 private ObservableList<Ticket> ticketData = 
 		FXCollections.observableArrayList();
+private static BorderPane mainWindow = new BorderPane();
+
+    private double x,y;
+    
 
  public Main()
        {
@@ -50,13 +57,19 @@ private ObservableList<Ticket> ticketData =
         TicketViewController controller = loader.getController();
         controller.setMainApp(this);
         
+       
         
         Scene scene = new Scene(root);
         
+        
+
+       
+            
         stage.setScene(scene);
-        stage.setTitle("Help Desk Ticket Viewing Application");
-        stage.setMinHeight(727);
-        stage.setMinWidth(1211);
+        stage.setTitle("Help Desk Application");
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.setMinHeight(500);
+        stage.setMinWidth(800);
         stage.show();
     }
 
@@ -67,12 +80,10 @@ private ObservableList<Ticket> ticketData =
    public ObservableList<Ticket> getTicketData() {
         	return ticketData;
     }
-
-    
-    
-    
-    
-    /**
+ 
+  
+   
+   /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
@@ -82,5 +93,16 @@ private ObservableList<Ticket> ticketData =
         
         launch(args);
     }
-    
+
+
+  
 }
+ 
+    
+    
+    
+    
+    
+    
+    
+
