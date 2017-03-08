@@ -172,4 +172,15 @@ public class Ticket {
         return ticketNumber;
     }
 
+    public boolean anyNull()
+    {
+        if (ticketNumber == null || ticketNumber.getValue() == 0) return true;  
+        if (firstName == null) return true;        
+        if (dateRequested == null) return true;        
+        if (assignedTo == null) return true;             
+        if (description == null) return true;             
+        if (employee == null) return true;     
+        return false;
+    }
+    
 }

@@ -230,7 +230,7 @@ public class TicketViewController implements Initializable
                 
 		// form a dialogue box
 
-		Dialog<Ticket> dialog = new Dialog();
+		Dialog<ButtonType> dialog = new Dialog();
 		dialog.setTitle("Update Ticket");
 		dialog.setHeaderText("Edit the contents of this ticket: ");
 		dialog.setResizable(false);
@@ -278,15 +278,22 @@ public class TicketViewController implements Initializable
 		grid.add(descriptionTextField, 2, 7);
 
 		dialog.getDialogPane().setContent(grid);
+                
+                //Control for unlocking the confirm button
+                dialog.getDialogPane().lookupButton(confirmButtonType).disableProperty().bind(
+                ticketNumberField.textProperty().isEmpty()
+                .or(firstNameTextField.textProperty().isEmpty())
+                .or(lastNameTextField.textProperty().isEmpty())
+                .or(employeeAssignedTextField.textProperty().isEmpty())
+                .or(descriptionTextField.textProperty().isEmpty())     
+                );
 
-		Optional<Ticket> result = dialog.showAndWait();
+                
+                
+		Optional<ButtonType> result = dialog.showAndWait();
 
-		/*
-		 * This first control block will create a ticket if it is EXACTLY the
-		 * same as the standard ticket object. Error handling will put empty
-		 * objects were no response is present.
-		 */
-		if (result.isPresent())
+
+		if (result.isPresent() && result.get().getText().equals("Confirm"))
 		{
 
 			// string mutations to match constructor
@@ -316,7 +323,7 @@ public class TicketViewController implements Initializable
 
 
 		// form a dialogue box
-                Dialog<Ticket> dialog = new Dialog();
+                Dialog<ButtonType> dialog = new Dialog();
 		dialog.setTitle("Add a new ticket");
 		dialog.setHeaderText("Please enter the contents of the new ticket:");
 		dialog.setResizable(false);
@@ -361,34 +368,38 @@ public class TicketViewController implements Initializable
 
 
                 
+                
 		dialog.getDialogPane().setContent(grid);
+                dialog.getDialogPane().lookupButton(confirmButtonType).disableProperty().bind(
+                ticketNumberField.textProperty().isEmpty()
+                .or(firstNameField.textProperty().isEmpty())
+                .or(lastNameField.textProperty().isEmpty())
+                .or(employeeAssignedField.textProperty().isEmpty())
+                .or(descriptionField.textProperty().isEmpty())     
+                );
 
-		Optional<Ticket> result = dialog.showAndWait();
-
-		if (result.isPresent())
+                
+                
+                
+                
+		Optional<ButtonType> result = dialog.showAndWait();
+                System.out.println(result.get());
+		if (result.isPresent() && result.get().getText().equals("Confirm"))
 		{
-			System.out.println(result.isPresent());
 			System.out.println(result.get());
 			int ticketNumber = Integer.parseInt(ticketNumberField.getText());
 			LocalDate newDate = dateRequested.getValue();
-
+                            
 			
 			Ticket newTicket = new Ticket(ticketNumber, firstNameField.getText(), lastNameField.getText(), newDate,
 					employeeAssignedField.getText(), descriptionField.getText(), "");
 
 			originalList.add(newTicket);
 		}
-
+                 System.out.println(result.get() == ButtonType.OK) ;
 	}
         
         
-        private boolean checkTicketInput(Ticket ticketPassed)
-        {
-            
-            
-            
-            return true;
-        }    
 
         
         

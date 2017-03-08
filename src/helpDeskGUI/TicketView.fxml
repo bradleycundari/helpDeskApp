@@ -53,7 +53,7 @@
                            </cursor>
                         </Button>
                         <TextField fx:id="filterField" nodeOrientation="LEFT_TO_RIGHT" promptText="Type Criteria Here" />
-                        <Label prefHeight="17.0" prefWidth="221.0" text="Filter Requests by Name:" />
+                        <Label prefHeight="17.0" prefWidth="221.0" text="Filter Requests:" />
                         <Button mnemonicParsing="false" onMouseClicked="#deleteClicked" prefHeight="25.0" prefWidth="255.0" text="Delete a ticket" />
                         <Button mnemonicParsing="false" onMouseClicked="#updateClicked" prefHeight="25.0" prefWidth="255.0" text="Edit a ticket" />
                         <Button mnemonicParsing="false" onMouseClicked="#addClicked" prefHeight="25.0" prefWidth="255.0" text="Add a ticket" />

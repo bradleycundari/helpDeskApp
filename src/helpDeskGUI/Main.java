@@ -33,11 +33,11 @@ private static BorderPane mainWindow = new BorderPane();
 
  public Main()
        {
-        ticketData.add(new Ticket(0, "Herman", "Munster",
+        ticketData.add(new Ticket(1, "Herman", "Munster",
  				LocalDate.of(2010, 4, 1), "Bob C", "Reinstall Windows", "Herman Munster"));
-        ticketData.add(new Ticket(1, "John", "Jackson",
+        ticketData.add(new Ticket(2, "John", "Jackson",
                             LocalDate.of(1980, 1, 1), "Jeff D.", "Reimage BIOS", "John Jackson"));
-        ticketData.add(new Ticket(2, "Bill", "Gates",
+        ticketData.add(new Ticket(3, "Bill", "Gates",
                             LocalDate.of(1804, 7, 3), "Ben L.", "Kill All Connections on Network at 12PM", "Bill Gates"));
    
        
