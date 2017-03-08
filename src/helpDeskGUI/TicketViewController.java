@@ -223,7 +223,7 @@ public class TicketViewController implements Initializable
 		Label ticketNumberLabel = new Label("Ticket Number: ");
 		Label firstNameLabel = new Label("First Name: ");
 		Label lastNameLabel = new Label("Last Name: ");
-		Label dateRequestedLabel = new Label("Date Requested (YYYY/MM/DD): ");
+		Label dateRequestedLabel = new Label("Date Requested: ");
 		Label employeeAssignedLabel = new Label("Employee Assigned: ");
 		Label descriptionLabel = new Label("Description: ");
 
@@ -231,6 +231,7 @@ public class TicketViewController implements Initializable
 		TextField firstNameTextField = new TextField(previousItem.getFirstName());
 		TextField lastNameTextField = new TextField(previousItem.getLastName());
                 DatePicker dateRequested = new DatePicker();
+                dateRequested.setValue(previousItem.getDateRequested().getValue());
                 
                 
 		TextField dateRequestedTextField = new TextField(previousItem.getDateRequested().toString().substring(23, 33));
@@ -304,7 +305,7 @@ public class TicketViewController implements Initializable
 		Label ticketNumberLabel = new Label("Ticket Number: ");
 		Label firstNameLabel = new Label("First Name: ");
 		Label lastNameLabel = new Label("Last Name: ");
-		Label dateRequestedLabel = new Label("Date Requested (YYYY/MM/DD): ");
+		Label dateRequestedLabel = new Label("Date Requested : ");
 		Label employeeAssignedLabel = new Label("Employee Assigned: ");
 		Label descriptionLabel = new Label("Description: ");
 
