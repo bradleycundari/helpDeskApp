@@ -21,7 +21,7 @@ import javafx.beans.property.StringProperty;
  */
 public class Ticket {
 
-    private final IntegerProperty status;
+    private final IntegerProperty ticketNumber;
     private final StringProperty firstName;
     private final StringProperty lastName;
     private final ObjectProperty<LocalDate> dateRequested;
@@ -38,16 +38,16 @@ public class Ticket {
     /**
      * Constructor with initial data.
      * 
-     * @param status
+     * @param ticketNumber
      * @param firstName
      * @param lastName
      * @param dateRequested
      */
-    public Ticket(int status, String firstName, String lastName, 
+    public Ticket(int ticketNumber, String firstName, String lastName, 
 				LocalDate dateRequested, String assignedTo,
                                      String description, String employee)
     {
-        this.status = new SimpleIntegerProperty(status);
+        this.ticketNumber = new SimpleIntegerProperty(ticketNumber);
         this.firstName = new SimpleStringProperty(firstName);
         this.lastName = new SimpleStringProperty(lastName);
         this.dateRequested = new SimpleObjectProperty<LocalDate>(dateRequested);
@@ -153,19 +153,19 @@ public class Ticket {
     
   
     /*
-    this block is for the ticket status
+    this block is for the ticket number
      */
-     public int getStatus(){
+     public int getTicketNumber(){
         
-      return this.status.get();  
+      return this.ticketNumber.get();  
     }
     
-    public void setStatus(int status){
-       this.status.set(status);
+    public void setTicketNumber(int ticketNumber){
+       this.ticketNumber.set(ticketNumber);
     }
     
-    public IntegerProperty statusProperty() {
-        return status;
+    public IntegerProperty ticketNumberProperty() {
+        return ticketNumber;
     }
 
 }

@@ -53,7 +53,7 @@ public class TicketViewController implements Initializable
         @FXML
 	private TableColumn<Ticket, String> employeeColumn;
 	@FXML
-	private TableColumn<Ticket, Integer> statusColumn;
+	private TableColumn<Ticket, Integer> ticketNumberColumn;
 	@FXML
 	private TableColumn<Ticket, String> lastNameColumn;
 	@FXML
@@ -87,7 +87,7 @@ public class TicketViewController implements Initializable
 
 		// Add observable list data to the table
 		ticketTable.setItems(mainApp.getTicketData());
-		statusColumn.setStyle( "-fx-alignment: CENTER;");
+		ticketNumberColumn.setStyle( "-fx-alignment: CENTER;");
                 
                 
                 
@@ -99,7 +99,7 @@ public class TicketViewController implements Initializable
 	@FXML
 	public void onMenuMouseDragged(MouseEvent event)
 	{
-		Stage stage = (Stage)anchorPane.getScene().getWindow();
+	Stage stage = (Stage)anchorPane.getScene().getWindow();
         stage.setX(event.getScreenX() + xOffset);
         stage.setY(event.getScreenY() + yOffset);
 	}
@@ -109,9 +109,9 @@ public class TicketViewController implements Initializable
 	public void onMenuMousePressed(MouseEvent event)
 	{
 		System.out.println("Pressed");
-		Stage stage = (Stage)anchorPane.getScene().getWindow();
-		xOffset = stage.getX() - event.getScreenX();
-		yOffset = stage.getY() - event.getScreenY();
+	Stage stage = (Stage)anchorPane.getScene().getWindow();
+	xOffset = stage.getX() - event.getScreenX();
+	yOffset = stage.getY() - event.getScreenY();
 	}
 
 	@FXML
@@ -166,14 +166,14 @@ public class TicketViewController implements Initializable
 	public void initialize(URL url, ResourceBundle rb)
 	{ // Begin method
 		// Initialize the 4 ticket table columns.
-		statusColumn.setCellValueFactory(cellData -> cellData.getValue().statusProperty().asObject());
+		ticketNumberColumn.setCellValueFactory(cellData -> cellData.getValue().ticketNumberProperty().asObject());
 		firstNameColumn.setCellValueFactory(cellData -> cellData.getValue().firstNameProperty());
 		lastNameColumn.setCellValueFactory(cellData -> cellData.getValue().lastNameProperty());
 		dateRequestedColumn.setCellValueFactory(cellData -> cellData.getValue().dateRequestedProperty());
 		assignedToColumn.setCellValueFactory(cellData -> cellData.getValue().assignedToProperty());
 		descriptionColumn.setCellValueFactory(cellData -> cellData.getValue().descriptionProperty());
                 //align center
-      		statusColumn.setStyle( "-fx-alignment: CENTER;");
+      		ticketNumberColumn.setStyle( "-fx-alignment: CENTER;");
 		firstNameColumn.setStyle( "-fx-alignment: CENTER;");
 		lastNameColumn.setStyle( "-fx-alignment: CENTER;");
 		dateRequestedColumn.setStyle( "-fx-alignment: CENTER;");
@@ -236,15 +236,12 @@ public class TicketViewController implements Initializable
 		Label employeeAssignedLabel = new Label("Employee Assigned: ");
 		Label descriptionLabel = new Label("Description: ");
 
-		TextField ticketNumberField = new TextField(String.valueOf(previousItem.getStatus()));
+		TextField ticketNumberField = new TextField(String.valueOf(previousItem.getTicketNumber()));
                 ticketNumberField.textProperty().addListener(forceNumberListener);
                 TextField firstNameTextField = new TextField(previousItem.getFirstName());
 		TextField lastNameTextField = new TextField(previousItem.getLastName());
                 DatePicker dateRequested = new DatePicker();
-                dateRequested.setValue(previousItem.getDateRequested().getValue());
-                
-                
-		TextField dateRequestedTextField = new TextField(previousItem.getDateRequested().toString().substring(23, 33));
+                dateRequested.setValue(previousItem.getDateRequested().getValue());        
 		TextField employeeAssignedTextField = new TextField(previousItem.getAssignedTo());
 		TextField descriptionTextField = new TextField(previousItem.getDescription());
 
@@ -284,11 +281,11 @@ public class TicketViewController implements Initializable
 		{
 
 			// string mutations to match constructor
-			int status = Integer.parseInt(ticketNumberField.getText());
+			int ticketNumber = Integer.parseInt(ticketNumberField.getText());
                         LocalDate newDate = dateRequested.getValue();
                         
 	
-			Ticket newTicket = new Ticket(status, firstNameTextField.getText(), lastNameTextField.getText(), newDate,
+			Ticket newTicket = new Ticket(ticketNumber, firstNameTextField.getText(), lastNameTextField.getText(), newDate,
 					employeeAssignedTextField.getText(), descriptionTextField.getText(), "");
 
 			originalList.remove(previousItem);
@@ -363,11 +360,11 @@ public class TicketViewController implements Initializable
 		{
 			System.out.println(result.isPresent());
 			System.out.println(result.get());
-			int status = Integer.parseInt(ticketNumberField.getText());
+			int ticketNumber = Integer.parseInt(ticketNumberField.getText());
 			LocalDate newDate = dateRequested.getValue();
 
 			
-			Ticket newTicket = new Ticket(status, firstNameField.getText(), lastNameField.getText(), newDate,
+			Ticket newTicket = new Ticket(ticketNumber, firstNameField.getText(), lastNameField.getText(), newDate,
 					employeeAssignedField.getText(), descriptionField.getText(), "");
 
 			originalList.add(newTicket);
