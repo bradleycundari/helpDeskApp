@@ -82,14 +82,9 @@ public class TicketViewController implements Initializable
 	{ // Begin Method
 		// Reference itself
 		this.mainApp = mainApp;
-
 		// Add observable list data to the table
 		ticketTable.setItems(mainApp.getTicketData());
-		ticketNumberColumn.setStyle( "-fx-alignment: CENTER;");
-                
-                
-                
-                
+		ticketNumberColumn.setStyle( "-fx-alignment: CENTER;");         
                 this.setFiltering();
 	} // End Method
 
@@ -106,7 +101,7 @@ public class TicketViewController implements Initializable
 	@FXML
 	public void onMenuMousePressed(MouseEvent event)
 	{
-		System.out.println("Pressed");
+	System.out.println("Pressed");
 	Stage stage = (Stage)anchorPane.getScene().getWindow();
 	xOffset = stage.getX() - event.getScreenX();
 	yOffset = stage.getY() - event.getScreenY();
