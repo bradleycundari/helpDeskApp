@@ -15,3 +15,7 @@
 *.PDF	 diff=astextplain
 *.rtf	 diff=astextplain
 *.RTF	 diff=astextplain
+
+#Change Language
+*.css linguist-language=Java
+*.html linguist-language=Java
