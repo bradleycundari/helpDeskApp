@@ -47,11 +47,9 @@ public class TicketViewController implements Initializable
 	@FXML
 	private AnchorPane anchorPane;
 	@FXML
-	private TableView<Ticket> employeeTable;
-	@FXML
-	private TableColumn<Ticket, String> employeeColumn;
-	@FXML
 	private TableView<Ticket> ticketTable;
+        @FXML
+	private TableColumn<Ticket, String> employeeColumn;
 	@FXML
 	private TableColumn<Ticket, Integer> statusColumn;
 	@FXML
@@ -87,7 +85,12 @@ public class TicketViewController implements Initializable
 
 		// Add observable list data to the table
 		ticketTable.setItems(mainApp.getTicketData());
-		this.setFiltering();
+		statusColumn.setStyle( "-fx-alignment: CENTER;");
+                
+                
+                
+                
+                this.setFiltering();
 	} // End Method
 
 	// Event Listener on BorderPane.onMouseDragged
@@ -123,9 +126,6 @@ public class TicketViewController implements Initializable
 
 	private void setFiltering()
 	{ // Begin Method
-		// Wrap the ObservableList in a FilteredList. The p -> true
-		// is a predicate used to filter the data.
-		// In this case, a simple â€œtrueâ€� means â€œshow all dataâ€�.
 		FilteredList<Ticket> filteredData = new FilteredList<>(mainApp.getTicketData(), p -> true);
 		// Set the filter Predicate whenever the filter changes.
 		filterField.textProperty().addListener((observable, oldValue, newValue) -> {
@@ -150,13 +150,10 @@ public class TicketViewController implements Initializable
 				return false; // Does not match.
 			});
 		});
-
-		// FilteredLists cannot be modified. Therefore, wrap the
 		// FilteredList in a SortedList to allow for sorting.
 		SortedList<Ticket> sortedData = new SortedList<>(filteredData);
 
 		// Bind the SortedList comparator to the TableView
-		// comparator.
 		sortedData.comparatorProperty().bind(ticketTable.comparatorProperty());
 
 		// Add sorted (and filtered) data to the table.
@@ -166,7 +163,6 @@ public class TicketViewController implements Initializable
 	@Override
 	public void initialize(URL url, ResourceBundle rb)
 	{ // Begin method
-
 		// Initialize the 4 ticket table columns.
 		statusColumn.setCellValueFactory(cellData -> cellData.getValue().statusProperty().asObject());
 		firstNameColumn.setCellValueFactory(cellData -> cellData.getValue().firstNameProperty());
@@ -174,7 +170,14 @@ public class TicketViewController implements Initializable
 		dateRequestedColumn.setCellValueFactory(cellData -> cellData.getValue().dateRequestedProperty());
 		assignedToColumn.setCellValueFactory(cellData -> cellData.getValue().assignedToProperty());
 		descriptionColumn.setCellValueFactory(cellData -> cellData.getValue().descriptionProperty());
-	} // End method
+                //align center
+      		statusColumn.setStyle( "-fx-alignment: CENTER;");
+		firstNameColumn.setStyle( "-fx-alignment: CENTER;");
+		lastNameColumn.setStyle( "-fx-alignment: CENTER;");
+		dateRequestedColumn.setStyle( "-fx-alignment: CENTER;");
+		assignedToColumn.setStyle( "-fx-alignment: CENTER;");
+      
+        } // End method
 
 	@FXML
 	private void clearButtonMouseExited(MouseEvent event)
@@ -186,7 +189,7 @@ public class TicketViewController implements Initializable
 	@FXML
 	private void clearButtonMouseEntered(MouseEvent event)
 	{ // Begin Method
-		// Define a black drop shadow 5 pixels wide
+		// A black drop shadow 5 pixels wide
 		DropShadow buttonShadow = new DropShadow(5, Color.BLACK);
 		// Apply the drop shadow to the Clear button
 		clearButton.setEffect(buttonShadow);

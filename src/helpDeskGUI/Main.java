@@ -33,7 +33,7 @@ private ObservableList<Ticket> ticketData =
 		FXCollections.observableArrayList();
 private static BorderPane mainWindow = new BorderPane();
 
-    private double x,y;
+
     
 
  public Main()
@@ -45,6 +45,7 @@ private static BorderPane mainWindow = new BorderPane();
         ticketData.add(new Ticket(2, "Bill", "Gates",
                             LocalDate.of(1804, 7, 3), "Ben L.", "Kill All Connections on Network at 12PM", "Bill Gates"));
    
+       
        }
     
    
@@ -67,7 +68,7 @@ private static BorderPane mainWindow = new BorderPane();
             
         stage.setScene(scene);
         stage.setTitle("Help Desk Application");
-        stage.initStyle(StageStyle.UNDECORATED);
+        //stage.initStyle(StageStyle.UNDECORATED);
         stage.setMinHeight(500);
         stage.setMinWidth(800);
         stage.show();
