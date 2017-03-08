@@ -21,6 +21,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.StageStyle;
 import javafx.scene.Node;
 import javafx.event.*;
+import javafx.scene.image.Image;
 
 
 /**
@@ -71,6 +72,7 @@ private static BorderPane mainWindow = new BorderPane();
         //stage.initStyle(StageStyle.UNDECORATED);
         stage.setMinHeight(500);
         stage.setMinWidth(800);
+        stage.getIcons().add(new Image("http://www.nexlevelnet.com/images/home/helpdesk_icon.png"));
         stage.show();
     }
 

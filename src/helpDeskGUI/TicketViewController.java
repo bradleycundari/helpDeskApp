@@ -176,7 +176,7 @@ public class TicketViewController implements Initializable
 		lastNameColumn.setStyle( "-fx-alignment: CENTER;");
 		dateRequestedColumn.setStyle( "-fx-alignment: CENTER;");
 		assignedToColumn.setStyle( "-fx-alignment: CENTER;");
-      
+     
         } // End method
 
 	@FXML
