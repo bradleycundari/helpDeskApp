@@ -3,4 +3,4 @@ A simple help desk ticket tracking application made in JavaFX created by Brad Cu
 
 Please note this project is an active WIP.
 
-To run: Navigate to the /dist/ folder and download the .jar file or build and run the project through netbeans.
+To run: You can find HelpDeskApplication.jar in the main folder or the /dist/ folder.
