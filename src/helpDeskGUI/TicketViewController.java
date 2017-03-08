@@ -7,8 +7,7 @@
 
 package helpDeskGUI;
 
-//JavaFX imports a ton of unnecessary depenedencies
-import helpDeskGUI.Ticket;
+
 import javafx.scene.input.MouseEvent;
 import java.net.URL;
 import java.time.LocalDate;
@@ -31,7 +30,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.TextInputDialog;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
@@ -146,6 +144,17 @@ public class TicketViewController implements Initializable
 				{
 					return true; // Filter matches first name.
 				} else if (ticket.getLastName().toLowerCase().contains(lowerCaseFilter))
+				{
+					return true; // Filter matches last name.
+				} else if (ticket.getDescription().toLowerCase().contains(lowerCaseFilter))
+				{
+					return true; // Filter matches the description
+				}
+                                 else if (ticket.getAssignedTo().toLowerCase().contains(lowerCaseFilter))
+				{
+					return true; // Filter matches last name.
+				}                          
+                                 else if (ticket.getTicketString().toLowerCase().contains(lowerCaseFilter))
 				{
 					return true; // Filter matches last name.
 				}

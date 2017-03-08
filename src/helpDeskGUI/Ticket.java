@@ -150,14 +150,18 @@ public class Ticket {
         return dateRequested;
     }
 
-    
-  
+
     /*
     this block is for the ticket number
      */
      public int getTicketNumber(){
         
       return this.ticketNumber.get();  
+    }
+     
+    public String getTicketString()
+    {
+        return Integer.toString(ticketNumber.get());
     }
     
     public void setTicketNumber(int ticketNumber){

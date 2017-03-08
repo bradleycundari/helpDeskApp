@@ -11,16 +11,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import helpDeskGUI.Ticket;
-import java.awt.event.MouseEvent;
 import java.time.LocalDate;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.EventHandler;
 import javafx.scene.layout.BorderPane;
-import javafx.stage.StageStyle;
-import javafx.scene.Node;
-import javafx.event.*;
 import javafx.scene.image.Image;
 
 
