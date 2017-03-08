@@ -14,6 +14,8 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import javafx.beans.property.StringProperty;
+import javafx.beans.value.ChangeListener;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
@@ -209,7 +211,14 @@ public class TicketViewController implements Initializable
 
 		ObservableList<Ticket> originalList = mainApp.getTicketData();
 		Ticket previousItem = ticketTable.getSelectionModel().getSelectedItem();
-		String fullName = "";
+                
+                //listener to force a numeric value
+                ChangeListener<String> forceNumberListener = (observable, oldValue, newValue) -> {
+                    if (!newValue.matches("\\d*"))
+                        ((StringProperty) observable).set(oldValue);
+                    };
+                
+                
 		// form a dialogue box
 
 		Dialog<Ticket> dialog = new Dialog();
@@ -228,7 +237,8 @@ public class TicketViewController implements Initializable
 		Label descriptionLabel = new Label("Description: ");
 
 		TextField ticketNumberField = new TextField(String.valueOf(previousItem.getStatus()));
-		TextField firstNameTextField = new TextField(previousItem.getFirstName());
+                ticketNumberField.textProperty().addListener(forceNumberListener);
+                TextField firstNameTextField = new TextField(previousItem.getFirstName());
 		TextField lastNameTextField = new TextField(previousItem.getLastName());
                 DatePicker dateRequested = new DatePicker();
                 dateRequested.setValue(previousItem.getDateRequested().getValue());
@@ -277,9 +287,9 @@ public class TicketViewController implements Initializable
 			int status = Integer.parseInt(ticketNumberField.getText());
                         LocalDate newDate = dateRequested.getValue();
                         
-			fullName = fullName + firstNameTextField.getText() + " " + lastNameTextField.getText();
+	
 			Ticket newTicket = new Ticket(status, firstNameTextField.getText(), lastNameTextField.getText(), newDate,
-					employeeAssignedTextField.getText(), descriptionTextField.getText(), fullName);
+					employeeAssignedTextField.getText(), descriptionTextField.getText(), "");
 
 			originalList.remove(previousItem);
 			originalList.add(newTicket);
@@ -291,10 +301,16 @@ public class TicketViewController implements Initializable
 	private void addClicked(javafx.scene.input.MouseEvent event)
 	{
 		ObservableList<Ticket> originalList = mainApp.getTicketData();
-		String fullName = "";
-		// form a dialogue box
+                
+                //Listener to force a numeric input
+                ChangeListener<String> forceNumberListener = (observable, oldValue, newValue) -> {
+                    if (!newValue.matches("\\d*"))
+                        ((StringProperty) observable).set(oldValue);
+                    };
 
-		Dialog<Ticket> dialog = new Dialog();
+
+		// form a dialogue box
+                Dialog<Ticket> dialog = new Dialog();
 		dialog.setTitle("Add a new ticket");
 		dialog.setHeaderText("Please enter the contents of the new ticket:");
 		dialog.setResizable(false);
@@ -309,14 +325,20 @@ public class TicketViewController implements Initializable
 		Label employeeAssignedLabel = new Label("Employee Assigned: ");
 		Label descriptionLabel = new Label("Description: ");
 
+                
+                //initialize textfields and apply listeners
 		TextField ticketNumberField = new TextField();
-		TextField firstNameField = new TextField();
+		ticketNumberField.textProperty().addListener(forceNumberListener);
+                TextField firstNameField = new TextField();
 		TextField lastNameField = new TextField();
 		TextField dateRequestedField = new TextField();
 		TextField employeeAssignedField = new TextField();
 		TextField descriptionField = new TextField();
                 DatePicker dateRequested = new DatePicker();
+               
                 
+                
+                //repeated logic that can be reduced via a new method
 		GridPane grid = new GridPane();
 		grid.add(ticketNumberLabel, 1, 1);
 		grid.add(ticketNumberField, 2, 1);
@@ -344,13 +366,34 @@ public class TicketViewController implements Initializable
 			int status = Integer.parseInt(ticketNumberField.getText());
 			LocalDate newDate = dateRequested.getValue();
 
-			fullName = fullName + firstNameField.getText() + " " + lastNameField.getText();
+			
 			Ticket newTicket = new Ticket(status, firstNameField.getText(), lastNameField.getText(), newDate,
-					employeeAssignedField.getText(), descriptionField.getText(), fullName);
+					employeeAssignedField.getText(), descriptionField.getText(), "");
 
 			originalList.add(newTicket);
 		}
 
 	}
+        
+        
+        private boolean checkTicketInput(Ticket ticketPassed)
+        {
+            
+            
+            
+            return true;
+        }    
 
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
 }
