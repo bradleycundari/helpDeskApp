@@ -31,6 +31,7 @@ import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.AnchorPane;
@@ -222,7 +223,8 @@ public class TicketViewController implements Initializable
 	@FXML
 	private void updateClicked(javafx.scene.input.MouseEvent event)
 	{ // Begin Method
-
+        if (ticketTable.getSelectionModel().getSelectedItem() != null)
+        { //begin if       
 		ObservableList<Ticket> originalList = mainApp.getTicketData();
 		Ticket previousItem = ticketTable.getSelectionModel().getSelectedItem();
                 
@@ -311,8 +313,8 @@ public class TicketViewController implements Initializable
 
 			originalList.remove(previousItem);
 			originalList.add(newTicket);
-		}
-
+		} // end result if
+            } // end if
 	} // End method
 
         @FXML
@@ -438,7 +440,7 @@ public class TicketViewController implements Initializable
 		Label ticketNumberLabel = new Label("Ticket Number: ");
 		Label firstNameLabel = new Label("First Name: ");
 		Label lastNameLabel = new Label("Last Name: ");
-		Label dateRequestedLabel = new Label("Date Requested : ");
+		Label dateRequestedLabel = new Label("Date Requested: ");
 		Label employeeAssignedLabel = new Label("Employee Assigned: ");
 		Label descriptionLabel = new Label("Description: ");
 
@@ -450,10 +452,13 @@ public class TicketViewController implements Initializable
 		TextField lastNameField = new TextField();
 		TextField dateRequestedField = new TextField();
 		TextField employeeAssignedField = new TextField();
-		TextField descriptionField = new TextField();
+		TextArea descriptionField = new TextArea();
                 DatePicker dateRequested = new DatePicker();
-               
                 
+                // making the description field bigger so its easy to use
+		descriptionField.setPrefWidth(160);
+		descriptionField.setPrefHeight(80);
+                descriptionField.setWrapText(true);
                 
                 //repeated logic that can be reduced via a new method
 		GridPane grid = new GridPane();
@@ -529,7 +534,7 @@ public class TicketViewController implements Initializable
 		Label ticketNumberLabel = new Label("Ticket Number: ");
 		Label firstNameLabel = new Label("First Name: ");
 		Label lastNameLabel = new Label("Last Name: ");
-		Label dateRequestedLabel = new Label("Date Requested : ");
+		Label dateRequestedLabel = new Label("Date Requested: ");
 		Label employeeAssignedLabel = new Label("Employee Assigned: ");
 		Label descriptionLabel = new Label("Description: ");
 
@@ -541,10 +546,13 @@ public class TicketViewController implements Initializable
 		TextField lastNameField = new TextField();
 		TextField dateRequestedField = new TextField();
 		TextField employeeAssignedField = new TextField();
-		TextField descriptionField = new TextField();
+		TextArea descriptionField = new TextArea();
                 DatePicker dateRequested = new DatePicker();
                
-                
+                // making the description field bigger so its easy to use
+		descriptionField.setPrefWidth(160);
+		descriptionField.setPrefHeight(80);
+                descriptionField.setWrapText(true);
                 
                 //repeated logic that can be reduced via a new method
 		GridPane grid = new GridPane();

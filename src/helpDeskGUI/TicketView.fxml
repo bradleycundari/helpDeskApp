@@ -66,11 +66,14 @@
          </top>
          <center>
             <TableView fx:id="ticketTable" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="659.0" prefWidth="1211.0" BorderPane.alignment="CENTER">
-              <columns>
+                  <placeholder>
+                    <Label text="A ticket hasn't been created yet."/>
+                </placeholder>
+                <columns>
                   <TableColumn fx:id="ticketNumberColumn" maxWidth="75.0" minWidth="75.0" prefWidth="100.0" styleClass="statusColumn" text="Ticket #" />
                   <TableColumn fx:id="firstNameColumn" maxWidth="200.0" minWidth="175.0" prefWidth="175.0" text="First Name" />
                 <TableColumn fx:id="lastNameColumn" maxWidth="200.0" minWidth="175.0" prefWidth="175.0" text="Last Name" />
-                  <TableColumn fx:id="dateRequestedColumn" maxWidth="200.0" minWidth="175.0" prefWidth="175.0" text="Date Created" />
+                  <TableColumn fx:id="dateRequestedColumn" maxWidth="200.0" minWidth="175.0" prefWidth="175.0" text="Date Requested" />
                 <TableColumn fx:id="assignedToColumn" maxWidth="175.0" minWidth="150.0" prefWidth="150.0" text="Assigned To" />
                   <TableColumn fx:id="descriptionColumn" prefWidth="75.0" text="Description" />
               </columns>
