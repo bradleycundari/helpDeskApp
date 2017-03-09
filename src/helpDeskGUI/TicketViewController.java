@@ -236,11 +236,12 @@ public class TicketViewController implements Initializable {
             DatePicker dateRequested = new DatePicker();
             dateRequested.setValue(previousItem.getDateRequested().getValue());
             TextField employeeAssignedTextField = new TextField(previousItem.getAssignedTo());
-            TextField descriptionTextField = new TextField(previousItem.getDescription());
+            TextArea descriptionTextField = new TextArea(previousItem.getDescription());
 
             // making the description field bigger so its easy to use
             descriptionTextField.setPrefWidth(160);
             descriptionTextField.setPrefHeight(80);
+            descriptionTextField.setWrapText(true);
 
             GridPane grid = new GridPane();
             grid.add(ticketNumberLabel, 1, 1);
@@ -325,12 +326,13 @@ public class TicketViewController implements Initializable {
             DatePicker dateRequested = new DatePicker();
             dateRequested.setValue(previousItem.getDateRequested().getValue());
             TextField employeeAssignedTextField = new TextField(previousItem.getAssignedTo());
-            TextField descriptionTextField = new TextField(previousItem.getDescription());
+            TextArea descriptionTextField = new TextArea(previousItem.getDescription());
 
             // making the description field bigger so its easy to use
             descriptionTextField.setPrefWidth(160);
             descriptionTextField.setPrefHeight(80);
-
+            descriptionTextField.setWrapText(true);
+            
             GridPane grid = new GridPane();
             grid.add(ticketNumberLabel, 1, 1);
             grid.add(ticketNumberField, 2, 1);
