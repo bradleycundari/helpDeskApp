@@ -208,6 +208,14 @@ public class TicketViewController implements Initializable
 		Ticket selectedItem = ticketTable.getSelectionModel().getSelectedItem();
 		originalList.remove(selectedItem);
 	} // End Method
+        
+        @FXML
+	private void deleteTicketClicked(ActionEvent event)
+	{ // Begin Method
+		ObservableList<Ticket> originalList = mainApp.getTicketData();
+		Ticket selectedItem = ticketTable.getSelectionModel().getSelectedItem();
+		originalList.remove(selectedItem);
+	} // End Method
 
 	@FXML
 	private void updateClicked(javafx.scene.input.MouseEvent event)
@@ -305,6 +313,103 @@ public class TicketViewController implements Initializable
 
 	} // End method
 
+        @FXML
+	private void updateTicketClicked(ActionEvent event)
+	{ // Begin Method
+
+		ObservableList<Ticket> originalList = mainApp.getTicketData();
+		Ticket previousItem = ticketTable.getSelectionModel().getSelectedItem();
+                
+                //listener to force a numeric value
+                ChangeListener<String> forceNumberListener = (observable, oldValue, newValue) -> {
+                    if (!newValue.matches("\\d*"))
+                        ((StringProperty) observable).set(oldValue);
+                    };
+                
+                
+		// form a dialogue box
+
+		Dialog<ButtonType> dialog = new Dialog();
+		dialog.setTitle("Update Ticket");
+		dialog.setHeaderText("Edit the contents of this ticket: ");
+		dialog.setResizable(false);
+
+		ButtonType confirmButtonType = new ButtonType("Confirm", ButtonData.OK_DONE);
+		dialog.getDialogPane().getButtonTypes().addAll(confirmButtonType, ButtonType.CANCEL);
+
+		Label ticketNumberLabel = new Label("Ticket Number: ");
+		Label firstNameLabel = new Label("First Name: ");
+		Label lastNameLabel = new Label("Last Name: ");
+		Label dateRequestedLabel = new Label("Date Requested: ");
+		Label employeeAssignedLabel = new Label("Employee Assigned: ");
+		Label descriptionLabel = new Label("Description: ");
+
+		TextField ticketNumberField = new TextField(String.valueOf(previousItem.getTicketNumber()));
+                ticketNumberField.textProperty().addListener(forceNumberListener);
+                TextField firstNameTextField = new TextField(previousItem.getFirstName());
+		TextField lastNameTextField = new TextField(previousItem.getLastName());
+                DatePicker dateRequested = new DatePicker();
+                dateRequested.setValue(previousItem.getDateRequested().getValue());        
+		TextField employeeAssignedTextField = new TextField(previousItem.getAssignedTo());
+		TextField descriptionTextField = new TextField(previousItem.getDescription());
+
+		// making the description field bigger so its easy to use
+		descriptionTextField.setPrefWidth(160);
+		descriptionTextField.setPrefHeight(80);
+
+		GridPane grid = new GridPane();
+		grid.add(ticketNumberLabel, 1, 1);
+		grid.add(ticketNumberField, 2, 1);
+
+		grid.add(firstNameLabel, 1, 2);
+		grid.add(firstNameTextField, 2, 2);
+
+		grid.add(lastNameLabel, 1, 3);
+		grid.add(lastNameTextField, 2, 3);
+
+		grid.add(dateRequestedLabel, 1, 4);
+                grid.add(dateRequested, 2, 4);
+                
+		grid.add(employeeAssignedLabel, 1, 6);
+		grid.add(employeeAssignedTextField, 2, 6);
+
+		grid.add(descriptionLabel, 1, 7);
+		grid.add(descriptionTextField, 2, 7);
+
+		dialog.getDialogPane().setContent(grid);
+                
+                //Control for unlocking the confirm button
+                dialog.getDialogPane().lookupButton(confirmButtonType).disableProperty().bind(
+                ticketNumberField.textProperty().isEmpty()
+                .or(firstNameTextField.textProperty().isEmpty())
+                .or(lastNameTextField.textProperty().isEmpty())
+                .or(employeeAssignedTextField.textProperty().isEmpty())
+                .or(descriptionTextField.textProperty().isEmpty())     
+                );
+
+                
+                
+		Optional<ButtonType> result = dialog.showAndWait();
+
+
+		if (result.isPresent() && result.get().getText().equals("Confirm"))
+		{
+
+			// string mutations to match constructor
+			int ticketNumber = Integer.parseInt(ticketNumberField.getText());
+                        LocalDate newDate = dateRequested.getValue();
+                        
+	
+			Ticket newTicket = new Ticket(ticketNumber, firstNameTextField.getText(), lastNameTextField.getText(), newDate,
+					employeeAssignedTextField.getText(), descriptionTextField.getText(), "");
+
+			originalList.remove(previousItem);
+			originalList.add(newTicket);
+		}
+
+	} // End method
+        
+    
 	@FXML
 	private void addClicked(javafx.scene.input.MouseEvent event)
 	{
