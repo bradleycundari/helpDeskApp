@@ -1,5 +1,3 @@
-
-
 /*
  * Author: Bradley Cundari
  * Date: 2016
@@ -28,16 +26,14 @@ public class Ticket {
     private final StringProperty assignedTo;
     private final StringProperty description;
     private final StringProperty employee;
-    
-
 
     public Ticket() {
-        this(0, null, null, null,null,null,null);
+        this(0, null, null, null, null, null, null);
     }
 
     /**
      * Constructor with initial data.
-     * 
+     *
      * @param ticketNumber
      * @param firstName
      * @param lastName
@@ -46,10 +42,9 @@ public class Ticket {
      * @param description
      * @param employee
      */
-    public Ticket(int ticketNumber, String firstName, String lastName, 
-				LocalDate dateRequested, String assignedTo,
-                                     String description, String employee)
-    {
+    public Ticket(int ticketNumber, String firstName, String lastName,
+            LocalDate dateRequested, String assignedTo,
+            String description, String employee) {
         this.ticketNumber = new SimpleIntegerProperty(ticketNumber);
         this.firstName = new SimpleStringProperty(firstName);
         this.lastName = new SimpleStringProperty(lastName);
@@ -59,11 +54,9 @@ public class Ticket {
         this.employee = new SimpleStringProperty(employee);
     }
 
-
     public String getFirstName() {
         return firstName.get();
     }
-
 
     public void setFirstName(String firstName) {
         this.firstName.set(firstName);
@@ -73,11 +66,9 @@ public class Ticket {
         return firstName;
     }
 
-
     public String getDescription() {
         return description.get();
     }
-
 
     public void setDescription(String description) {
         this.description.set(description);
@@ -90,16 +81,15 @@ public class Ticket {
     public String getEmployee() {
         return employee.get();
     }
-    
-    public void setEmployee(String employee) 
-    {
+
+    public void setEmployee(String employee) {
         this.employee.set(employee);
     }
 
     public StringProperty employeeProperty() {
         return employee;
     }
-    
+
     public String getAssignedTo() {
         return assignedTo.get();
     }
@@ -107,34 +97,33 @@ public class Ticket {
     public void setAssignedTo(String assignedTo) {
         this.assignedTo.set(assignedTo);
     }
-    
+
     public StringProperty assignedToProperty() {
         return assignedTo;
-    } 
-    
-    public ObjectProperty<LocalDate> getDateRequested()
-    {
+    }
+
+    public ObjectProperty<LocalDate> getDateRequested() {
         return dateRequested;
     }
-    
-    public String getLastName(){
-        
-      return this.lastName.get();  
+
+    public String getLastName() {
+
+        return this.lastName.get();
     }
-    
-    public void setLastName(String lastName){
-       this.lastName.set(lastName);
+
+    public void setLastName(String lastName) {
+        this.lastName.set(lastName);
     }
-    
+
     public StringProperty lastNameProperty() {
         return lastName;
     }
-    
+
     public LocalDate getHireDate() {
         return dateRequested.get();
     }
 
-    public void setHireDate (LocalDate dateRequested) {
+    public void setHireDate(LocalDate dateRequested) {
         this.dateRequested.set(dateRequested);
     }
 
@@ -142,33 +131,43 @@ public class Ticket {
         return dateRequested;
     }
 
-     public int getTicketNumber(){
-        
-      return this.ticketNumber.get();  
+    public int getTicketNumber() {
+
+        return this.ticketNumber.get();
     }
-     
-    public String getTicketString()
-    {
+
+    public String getTicketString() {
         return Integer.toString(ticketNumber.get());
     }
-    
-    public void setTicketNumber(int ticketNumber){
-       this.ticketNumber.set(ticketNumber);
+
+    public void setTicketNumber(int ticketNumber) {
+        this.ticketNumber.set(ticketNumber);
     }
-    
+
     public IntegerProperty ticketNumberProperty() {
         return ticketNumber;
     }
 
-    public boolean anyNull()
-    {
-        if (ticketNumber == null || ticketNumber.getValue() == 0) return true;  
-        if (firstName == null) return true;        
-        if (dateRequested == null) return true;        
-        if (assignedTo == null) return true;             
-        if (description == null) return true;             
-        if (employee == null) return true;     
+    public boolean anyNull() {
+        if (ticketNumber == null || ticketNumber.getValue() == 0) {
+            return true;
+        }
+        if (firstName == null) {
+            return true;
+        }
+        if (dateRequested == null) {
+            return true;
+        }
+        if (assignedTo == null) {
+            return true;
+        }
+        if (description == null) {
+            return true;
+        }
+        if (employee == null) {
+            return true;
+        }
         return false;
     }
-    
+
 }
