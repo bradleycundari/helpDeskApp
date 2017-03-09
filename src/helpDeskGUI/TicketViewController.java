@@ -318,9 +318,11 @@ public class TicketViewController implements Initializable
         @FXML
 	private void updateTicketClicked(ActionEvent event)
 	{ // Begin Method
-
+        if (ticketTable.getSelectionModel().getSelectedItem() != null)
+        { //begin if       
 		ObservableList<Ticket> originalList = mainApp.getTicketData();
 		Ticket previousItem = ticketTable.getSelectionModel().getSelectedItem();
+                
                 
                 //listener to force a numeric value
                 ChangeListener<String> forceNumberListener = (observable, oldValue, newValue) -> {
@@ -395,7 +397,7 @@ public class TicketViewController implements Initializable
 
 
 		if (result.isPresent() && result.get().getText().equals("Confirm"))
-		{
+		{ // begin result if
 
 			// string mutations to match constructor
 			int ticketNumber = Integer.parseInt(ticketNumberField.getText());
@@ -407,8 +409,8 @@ public class TicketViewController implements Initializable
 
 			originalList.remove(previousItem);
 			originalList.add(newTicket);
-		}
-
+		} // end result if
+        }//end first if      
 	} // End method
         
     
@@ -507,6 +509,7 @@ public class TicketViewController implements Initializable
 	{
 		ObservableList<Ticket> originalList = mainApp.getTicketData();
                 
+                
                 //Listener to force a numeric input
                 ChangeListener<String> forceNumberListener = (observable, oldValue, newValue) -> {
                     if (!newValue.matches("\\d*"))
@@ -570,7 +573,7 @@ public class TicketViewController implements Initializable
                 .or(descriptionField.textProperty().isEmpty())     
                 );
 
-                
+                System.out.println(event.getTarget());
                 
                 
                 
@@ -581,7 +584,7 @@ public class TicketViewController implements Initializable
 			System.out.println(result.get());
 			int ticketNumber = Integer.parseInt(ticketNumberField.getText());
 			LocalDate newDate = dateRequested.getValue();
-                            
+                        
 			
 			Ticket newTicket = new Ticket(ticketNumber, firstNameField.getText(), lastNameField.getText(), newDate,
 					employeeAssignedField.getText(), descriptionField.getText(), "");
