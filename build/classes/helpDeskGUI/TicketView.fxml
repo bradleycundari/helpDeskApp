@@ -29,6 +29,7 @@
                     <menus>
                       <Menu mnemonicParsing="false" text="File">
                         <items>
+                              <MenuItem mnemonicParsing="false" onAction="#addButtonClicked" text="Add New Ticket" />
                           <MenuItem mnemonicParsing="false" onAction="#closeMenuItemAction" text="Exit" />
                         </items>
                       </Menu>
@@ -40,7 +41,7 @@
                       </Menu>
                       <Menu mnemonicParsing="false" text="Help">
                         <items>
-                          <MenuItem mnemonicParsing="false" text="About" />
+                          <MenuItem mnemonicParsing="false" onAction="#aboutClicked" text="About" />
                         </items>
                       </Menu>
                     </menus>

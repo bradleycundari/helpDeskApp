@@ -21,6 +21,8 @@ import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.ButtonType;
@@ -500,11 +502,106 @@ public class TicketViewController implements Initializable
 	}
         
         
+	@FXML
+	private void addButtonClicked(ActionEvent event)
+	{
+		ObservableList<Ticket> originalList = mainApp.getTicketData();
+                
+                //Listener to force a numeric input
+                ChangeListener<String> forceNumberListener = (observable, oldValue, newValue) -> {
+                    if (!newValue.matches("\\d*"))
+                        ((StringProperty) observable).set(oldValue);
+                    };
 
+
+		// form a dialogue box
+                Dialog<ButtonType> dialog = new Dialog();
+		dialog.setTitle("Add a new ticket");
+		dialog.setHeaderText("Please enter the contents of the new ticket:");
+		dialog.setResizable(false);
+
+		ButtonType confirmButtonType = new ButtonType("Confirm", ButtonData.OK_DONE);
+		dialog.getDialogPane().getButtonTypes().addAll(confirmButtonType, ButtonType.CANCEL);
+
+		Label ticketNumberLabel = new Label("Ticket Number: ");
+		Label firstNameLabel = new Label("First Name: ");
+		Label lastNameLabel = new Label("Last Name: ");
+		Label dateRequestedLabel = new Label("Date Requested : ");
+		Label employeeAssignedLabel = new Label("Employee Assigned: ");
+		Label descriptionLabel = new Label("Description: ");
+
+                
+                //initialize textfields and apply listeners
+		TextField ticketNumberField = new TextField();
+		ticketNumberField.textProperty().addListener(forceNumberListener);
+                TextField firstNameField = new TextField();
+		TextField lastNameField = new TextField();
+		TextField dateRequestedField = new TextField();
+		TextField employeeAssignedField = new TextField();
+		TextField descriptionField = new TextField();
+                DatePicker dateRequested = new DatePicker();
+               
+                
+                
+                //repeated logic that can be reduced via a new method
+		GridPane grid = new GridPane();
+		grid.add(ticketNumberLabel, 1, 1);
+		grid.add(ticketNumberField, 2, 1);
+		grid.add(firstNameLabel, 1, 2);
+		grid.add(firstNameField, 2, 2);
+		grid.add(lastNameLabel, 1, 3);
+		grid.add(lastNameField, 2, 3);
+		grid.add(dateRequestedLabel, 1, 4);
+		grid.add(dateRequested, 2, 4);
+		grid.add(employeeAssignedLabel, 1, 6);
+		grid.add(employeeAssignedField, 2, 6);
+		grid.add(descriptionLabel, 1, 7);
+		grid.add(descriptionField, 2, 7);
+
+
+                
+                
+		dialog.getDialogPane().setContent(grid);
+                dialog.getDialogPane().lookupButton(confirmButtonType).disableProperty().bind(
+                ticketNumberField.textProperty().isEmpty()
+                .or(firstNameField.textProperty().isEmpty())
+                .or(lastNameField.textProperty().isEmpty())
+                .or(employeeAssignedField.textProperty().isEmpty())
+                .or(descriptionField.textProperty().isEmpty())     
+                );
+
+                
+                
+                
+                
+		Optional<ButtonType> result = dialog.showAndWait();
+                System.out.println(result.get());
+		if (result.isPresent() && result.get().getText().equals("Confirm"))
+		{
+			System.out.println(result.get());
+			int ticketNumber = Integer.parseInt(ticketNumberField.getText());
+			LocalDate newDate = dateRequested.getValue();
+                            
+			
+			Ticket newTicket = new Ticket(ticketNumber, firstNameField.getText(), lastNameField.getText(), newDate,
+					employeeAssignedField.getText(), descriptionField.getText(), "");
+
+			originalList.add(newTicket);
+		}
+                 System.out.println(result.get() == ButtonType.OK) ;
+	}
         
+        @FXML
+        public void aboutClicked(ActionEvent event)
+        {
+           Alert alert = new Alert(AlertType.INFORMATION);
+           alert.setTitle("Contact Information");
+           alert.setHeaderText("About this program: ");
+           alert.setContentText("Created by: Brad Cundari" + "\n" + "bradleycundari@gmail.com" + "\n" + "www.github.com/bradleycundari");
+
+           alert.showAndWait();    
         
-        
-        
+        }
         
         
         
