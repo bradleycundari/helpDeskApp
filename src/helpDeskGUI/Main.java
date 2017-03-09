@@ -47,6 +47,7 @@ private static BorderPane mainWindow = new BorderPane();
     @Override
     public void start(Stage stage) throws Exception {
         FXMLLoader loader = new FXMLLoader();
+        
         loader.setLocation(getClass().getResource("TicketView.fxml"));
         Parent root = loader.load();
         // Give the controller access to the main app.

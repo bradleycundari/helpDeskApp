@@ -74,7 +74,7 @@ public class TicketViewController implements Initializable
 	private Main mainApp;
         private static double xOffset = 0;
         private static double yOffset = 0;
-
+        private int numTickets = 0;
 	/**
 	 * Is called by the main application to give a reference back to itself.
 	 * 
@@ -87,7 +87,7 @@ public class TicketViewController implements Initializable
 		this.mainApp = mainApp;
 		// Add observable list data to the table
 		ticketTable.setItems(mainApp.getTicketData());
-		ticketNumberColumn.setStyle( "-fx-alignment: CENTER;");         
+                ticketTable.setEditable(true);
                 this.setFiltering();
 	} // End Method
 
@@ -210,7 +210,8 @@ public class TicketViewController implements Initializable
 		ObservableList<Ticket> originalList = mainApp.getTicketData();
 		Ticket selectedItem = ticketTable.getSelectionModel().getSelectedItem();
 		originalList.remove(selectedItem);
-	} // End Method
+                numTickets--;
+        } // End Method
         
         @FXML
 	private void deleteTicketClicked(ActionEvent event)
@@ -218,7 +219,8 @@ public class TicketViewController implements Initializable
 		ObservableList<Ticket> originalList = mainApp.getTicketData();
 		Ticket selectedItem = ticketTable.getSelectionModel().getSelectedItem();
 		originalList.remove(selectedItem);
-	} // End Method
+                numTickets--;
+        } // End Method
 
 	@FXML
 	private void updateClicked(javafx.scene.input.MouseEvent event)
@@ -502,7 +504,7 @@ public class TicketViewController implements Initializable
 			
 			Ticket newTicket = new Ticket(ticketNumber, firstNameField.getText(), lastNameField.getText(), newDate,
 					employeeAssignedField.getText(), descriptionField.getText(), "");
-
+                        numTickets++;
 			originalList.add(newTicket);
 		}
                  System.out.println(result.get() == ButtonType.OK) ;
@@ -596,7 +598,7 @@ public class TicketViewController implements Initializable
 			
 			Ticket newTicket = new Ticket(ticketNumber, firstNameField.getText(), lastNameField.getText(), newDate,
 					employeeAssignedField.getText(), descriptionField.getText(), "");
-
+                        numTickets++;
 			originalList.add(newTicket);
 		}
                  System.out.println(result.get() == ButtonType.OK) ;
